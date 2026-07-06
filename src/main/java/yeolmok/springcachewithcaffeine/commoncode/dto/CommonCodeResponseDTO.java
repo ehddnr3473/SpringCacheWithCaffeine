@@ -1,4 +1,4 @@
-package yeolmok.springcachewithcaffeine.dto;
+package yeolmok.springcachewithcaffeine.commoncode.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

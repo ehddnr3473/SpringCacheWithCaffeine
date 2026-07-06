@@ -1,4 +1,4 @@
-package yeolmok.springcachewithcaffeine.config;
+package yeolmok.springcachewithcaffeine.global.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
@@ -21,6 +21,22 @@ public class CacheConfig {
                 Caffeine.newBuilder()
                         .maximumSize(20)
                         .expireAfterWrite(Duration.ofMinutes(10))
+        );
+
+        cacheManager.registerCustomCache(
+                "commonCodes",
+                Caffeine.newBuilder()
+                        .maximumSize(10)
+                        .expireAfterWrite(Duration.ofMinutes(10))
+                        .build()
+        );
+
+        cacheManager.registerCustomCache(
+                "users",
+                Caffeine.newBuilder()
+                        .maximumSize(1000)
+                        .expireAfterWrite(Duration.ofMinutes(1))
+                        .build()
         );
 
         return cacheManager;

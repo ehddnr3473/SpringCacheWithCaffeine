@@ -1,12 +1,11 @@
-package yeolmok.springcachewithcaffeine.service;
+package yeolmok.springcachewithcaffeine.commoncode.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import yeolmok.springcachewithcaffeine.dto.CommonCodeResponseDTO;
-import yeolmok.springcachewithcaffeine.entity.CommonCode;
-import yeolmok.springcachewithcaffeine.repository.CommonCodeRepository;
+import yeolmok.springcachewithcaffeine.commoncode.dto.CommonCodeResponseDTO;
+import yeolmok.springcachewithcaffeine.commoncode.repository.CommonCodeRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package yeolmok.springcachewithcaffeine.entity;
+package yeolmok.springcachewithcaffeine.commoncode.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
