@@ -1,0 +1,13 @@
+package yeolmok.springcachewithcaffeine;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SpringCacheWithCaffeineApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
