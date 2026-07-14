@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import yeolmok.springcachewithcaffeine.user.dto.UserResponseDTO;
+import yeolmok.springcachewithcaffeine.user.dto.UserDTO;
 import yeolmok.springcachewithcaffeine.user.entity.User;
+import yeolmok.springcachewithcaffeine.user.mapper.UserMapper;
 import yeolmok.springcachewithcaffeine.user.repository.UserRepository;
 
 @Slf4j
@@ -14,12 +15,13 @@ import yeolmok.springcachewithcaffeine.user.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Cacheable(value = "users", key = "#userId")
-    public UserResponseDTO getUserById(Long userId) {
+    public UserDTO getUserById(Long userId) {
         log.info("DB 조회");
 
         User user = userRepository.findById(userId).orElse(null);
-        return new UserResponseDTO(user.getUserId(), user.getUserName());
+        return userMapper.userToUserDTO(user);
     }
 }
