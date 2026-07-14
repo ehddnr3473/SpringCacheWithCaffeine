@@ -1,5 +1,8 @@
 # SpringCacheWithCaffeine
 
+# 개요
+공통 코드와 같이 조회는 빈번하지만 수정 빈도가 낮은 데이터를 Caffeine 라이브러리를 사용해서 캐시하는 예시
+
 # DDL
 
 ```sql

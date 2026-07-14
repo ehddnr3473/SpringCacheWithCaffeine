@@ -1,11 +1,11 @@
 package yeolmok.springcachewithcaffeine.commoncode.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
-public class CommonCodeResponseDTO {
+@Setter
+public class CommonCodeDTO {
 
     private String code;
     private String codeName;

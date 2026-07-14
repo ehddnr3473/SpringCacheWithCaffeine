@@ -5,11 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import yeolmok.springcachewithcaffeine.commoncode.dto.CommonCodeResponseDTO;
+import yeolmok.springcachewithcaffeine.commoncode.dto.CommonCodeDTO;
 import yeolmok.springcachewithcaffeine.commoncode.entity.CommonCode;
+import yeolmok.springcachewithcaffeine.commoncode.mapper.CommonCodeMapper;
 import yeolmok.springcachewithcaffeine.commoncode.repository.CommonCodeRepository;
 
 import java.util.List;
@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class CommonCodeService {
 
     private final CommonCodeRepository commonCodeRepository;
+    private final CommonCodeMapper commonCodeMapper;
 
     private final CacheManager cacheManager;
 
@@ -41,7 +42,7 @@ public class CommonCodeService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<CommonCodeResponseDTO> getCodes(String groupCode) {
+    public List<CommonCodeDTO> getCodes(String groupCode) {
         Cache.ValueWrapper wrapper = cacheManager.getCache("commonCodes").get("ALL");
 
         if (wrapper == null) {
@@ -53,9 +54,7 @@ public class CommonCodeService {
 
         return map.getOrDefault(groupCode, List.of())
                 .stream()
-                .map(code -> new CommonCodeResponseDTO(
-                    code.getCode(),
-                    code.getCodeName()))
-                .collect(Collectors.toList());
+                .map(commonCodeMapper::commonCodeToCommonCodeDTO)
+                .toList();
     }
 }
